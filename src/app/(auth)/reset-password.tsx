@@ -8,6 +8,7 @@ import { Colors } from "@/src/constants/Colors";
 import { messages } from "@/src/utils/password-validate.message";
 import { ArrowLeft, Check, Cross } from "@/assets/svg";
 import { HStack } from "@/src/components/ui/hstack";
+import { VStack } from "@/src/components/ui/vstack";
 
 const validatePassword = (password: string) => {
   return {
@@ -30,37 +31,21 @@ export default function SignUp() {
   return (
     <View style={{ paddingTop: top }} className="flex-1 bg-black">
       <KeyboardContainer>
-        <View className="h-[15%] justify-center items-center">
+        <HStack className="h-[15%] justify-center items-center">
           <View className="w-16 h-16 bg-white rounded-full" />
-        </View>
+        </HStack>
 
-        <View className="mb-[50px] bg-white rounded-tl-[60px] p-6">
-          <Text color={Colors.BLACK} textAlign="center" fontSize={32}>
-            Registro
-          </Text>
+        <View className="flex-1 bg-white rounded-tl-[60px] p-6">
+          <VStack className="gap-3 items-center">
+            <Text textAlign="center" fontSize={32}>
+              Restablecer contraseña
+            </Text>
+            <Text textAlign="center">
+              Asegúrate de elegir una contraseña segura y fácil de recordar.
+            </Text>
+          </VStack>
 
           <View className="mt-8 gap-4 pb-8">
-            <Input
-              label="Nombre"
-              onBlur={() => {}}
-              onChangeText={() => {}}
-              placeholder=""
-              keyboardType="email-address"
-            />
-            <Input
-              label="Apellido"
-              onBlur={() => {}}
-              onChangeText={() => {}}
-              placeholder=""
-              keyboardType="email-address"
-            />
-            <Input
-              label="Email"
-              onBlur={() => {}}
-              onChangeText={() => {}}
-              placeholder=""
-              keyboardType="email-address"
-            />
             <Input
               label="Contraseña"
               onBlur={() => {}}
@@ -113,19 +98,22 @@ export default function SignUp() {
                 <Button onPress={() => router.back()}>
                   <ArrowLeft color={Colors.WHITE} />
                 </Button>
-                <Button onPress={() => {}} flex={true}>
-                  Registrarse
+                <Button
+                  onPress={() => {
+                    router.dismissAll();
+                    router.push(AuthRoutesLink.PASSWORD_SUCCESS);
+                  }}
+                  flex={true}
+                >
+                  Reestablecer Contraseña
                 </Button>
               </HStack>
-              <Pressable className="items-center justify-end">
+              <Pressable
+                className="items-center justify-end"
+                onPress={() => router.push(AuthRoutesLink.SIGN_IN)}
+              >
                 <Text fontWeight={400}>
-                  Ya tenes cuenta?{" "}
-                  <Text
-                    fontWeight={600}
-                    onPress={() => router.push(AuthRoutesLink.SIGN_IN)}
-                  >
-                    Inicia Sesión
-                  </Text>
+                  Ya tenes cuenta? <Text fontWeight={600}>Inicia Sesión</Text>
                 </Text>
               </Pressable>
             </View>

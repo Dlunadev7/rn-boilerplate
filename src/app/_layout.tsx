@@ -73,7 +73,6 @@ export default function RootLayout() {
               <Stack.Screen name="+not-found" />
             </Stack>
           </AuthProvider>
-          <StatusBar style="auto" />
         </ThemeProvider>
       </GluestackUIProvider>
     </SWRProvider>
