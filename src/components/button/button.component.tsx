@@ -1,8 +1,8 @@
-import React, { ReactNode } from "react";
-import { StyleSheet, GestureResponderEvent, View, ActivityIndicator } from "react-native";
-import { Colors } from "../../constants/Colors";
-import { Button as GButton } from "../ui/button/index";
-import { Text } from "../text/text.component";
+import React, { ReactNode } from 'react';
+import { StyleSheet, GestureResponderEvent, View, ActivityIndicator, Keyboard } from 'react-native';
+import { Colors } from '../../constants/Colors';
+import { Button as GButton } from '../ui/button/index';
+import { Text } from '../text/text.component';
 
 interface ButtonProps {
   children: string | ReactNode;
@@ -10,7 +10,7 @@ interface ButtonProps {
   colors?: string[];
   style?: object;
   textClassName?: object;
-  type?: string;
+  submit?: boolean;
   loading?: boolean;
   stretch?: boolean;
   disabled?: boolean;
@@ -22,10 +22,10 @@ interface ButtonProps {
 export const Button: React.FC<ButtonProps> = ({
   children,
   onPress,
-  colors = ["#07A999", "#134641"],
+  colors = ['#07A999', '#134641'],
   style = {},
   textClassName = {},
-  type,
+  submit,
   loading,
   stretch,
   disabled,
@@ -33,17 +33,22 @@ export const Button: React.FC<ButtonProps> = ({
   iconRight,
   flex,
 }) => {
-  const width = stretch ? "100%" : "auto";
+  const width = stretch ? '100%' : 'auto';
 
   return (
     <GButton
       style={[styles.button, style, { width: width, flex: flex ? 1 : null }]}
-      onPress={onPress}
-      disabled={disabled}
+      onPress={(e) => {
+        onPress(e);
+        submit && Keyboard.dismiss();
+      }}
+      disabled={disabled || loading}
     >
       <View style={styles.content}>
         {iconLeft && <View style={styles.iconLeft}>{iconLeft}</View>}
-        <Text style={[styles.text, textClassName]}>{loading ? <ActivityIndicator color={Colors.WHITE} /> : children}</Text>
+        <Text style={[styles.text, textClassName]}>
+          {loading ? <ActivityIndicator color={Colors.WHITE} /> : children}
+        </Text>
         {iconRight && <View style={styles.iconRight}>{iconRight}</View>}
       </View>
     </GButton>
@@ -53,23 +58,23 @@ export const Button: React.FC<ButtonProps> = ({
 const styles = StyleSheet.create({
   button: {
     borderRadius: 12,
-    overflow: "hidden",
-    alignSelf: "center",
+    overflow: 'hidden',
+    alignSelf: 'center',
     minHeight: 40,
     paddingHorizontal: 20,
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "row",
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
   },
   content: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   text: {
-    color: "#fff",
+    color: '#fff',
     fontSize: 16,
-    fontWeight: "600",
-    textAlign: "center",
+    fontWeight: '600',
+    textAlign: 'center',
   },
   iconLeft: {
     marginRight: 8,

@@ -1,46 +1,28 @@
-import { Pressable, View } from 'react-native';
+import { Keyboard, Pressable, View } from 'react-native';
 import React, { useState } from 'react';
 import { insets } from '@/src/hooks';
 import { Text, Input, KeyboardContainer, Button } from '@/src/components';
 import { router } from 'expo-router';
-import { AuthRoutesLink } from '@/src/utils/enum';
+import { AuthRoutesLink, TabsRoutesLink } from '@/src/utils/enum';
 import { Toast, useToast } from '@/src/components/ui/toast';
-import { Apple, Facebook, Google } from '@/assets/svg';
+import { Formik } from 'formik';
+import { validationSchema } from '@/src/utils/schema/auth.schema';
+import { HStack } from '@/src/components/ui/hstack';
+import { VStack } from '@/src/components/ui/vstack';
+import { useGlobalContext } from '@/src/context/global.context';
 
 export default function SignIn() {
   const { top, bottom } = insets();
+  const { setAuthData } = useGlobalContext();
   const toast = useToast();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = () => {
+  const handleLogin = ({ email, password }: { email: string; password: string }) => {
     setLoading(true);
-
-    if (!email || !password) {
-      toast.show({
-        placement: 'top',
-        duration: 3000,
-        render: ({ id }) => {
-          const uniqueToastId = 'toast-' + id;
-          return (
-            <Toast className="min-w-[95%] m-auto" nativeID={uniqueToastId} action="error" variant="outline">
-              <View>
-                <Text className="text-foreground font-semibold text-lg">Error</Text>
-                <Text className="text-muted-foreground text-sm">Por favor, completa todos los campos.</Text>
-              </View>
-            </Toast>
-          );
-        },
-      });
-
-      setLoading(false);
-      return;
-    }
 
     // Simulación de inicio de sesión falso
     setTimeout(() => {
-      if (email !== 'test@example.com' || password !== '123456') {
+      if (email !== 'dluna@gmail.com' || password !== 'Csaomsiala7#') {
         toast.show({
           placement: 'top',
           duration: 3000,
@@ -57,24 +39,13 @@ export default function SignIn() {
           },
         });
       } else {
-        // router.push(AuthRoutesLink.); // Redirección en caso de éxito
+        setAuthData('token', 'refreshtoken');
+        router.push(TabsRoutesLink.HOME);
       }
 
-      setLoading(false); // Desactivamos el loading después de la validación
+      setLoading(false);
     }, 1500);
   };
-
-  const icons = [
-    {
-      icon: Google,
-    },
-    {
-      icon: Apple,
-    },
-    {
-      icon: Facebook,
-    },
-  ];
 
   return (
     <View style={{ paddingTop: top }} className="flex-1 bg-black">
@@ -87,31 +58,50 @@ export default function SignIn() {
           <Text textAlign="center" fontSize={32}>
             Inicio de sesión
           </Text>
-          <View className="mt-16 gap-4 mb-8">
-            <Input
-              onBlur={() => {}}
-              label="Email"
-              value={email}
-              onChangeText={setEmail}
-              placeholder="Tu correo electrónico"
-              keyboardType="email-address"
-            />
-            <Input
-              onBlur={() => {}}
-              label="Contraseña"
-              value={password}
-              onChangeText={setPassword}
-              placeholder="Tu contraseña"
-              secureTextEntry={true}
-              rightIcon
-            />
-            <Pressable onPress={() => router.push(AuthRoutesLink.RECOVERY_PASSWORD)}>
-              <Text textAlign="right">¿Olvidaste tu contraseña?</Text>
-            </Pressable>
+          <View className="mt-16 mb-8">
+            <Formik
+              initialValues={{ email: '', password: '' }}
+              validationSchema={validationSchema}
+              onSubmit={handleLogin}
+            >
+              {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => {
+                return (
+                  <View className="gap-4">
+                    <VStack className="gap-8">
+                      <Input
+                        label="Email"
+                        value={values.email}
+                        onChangeText={handleChange('email')}
+                        onBlur={handleBlur('email')}
+                        placeholder="Tu correo electrónico"
+                        keyboardType="email-address"
+                        error={touched.email && errors.email ? errors.email : ''}
+                        touched={touched.email}
+                        autoCapitalize='none'
+                      />
+                      <Input
+                        label="Contraseña"
+                        value={values.password}
+                        onChangeText={handleChange('password')}
+                        onBlur={handleBlur('password')}
+                        placeholder="Tu contraseña"
+                        secureTextEntry
+                        rightIcon
+                        error={touched.password && errors.password ? errors.password : ''}
+                        touched={touched.password}
+                      />
+                    </VStack>
+                    <Pressable onPress={() => router.push(AuthRoutesLink.RECOVERY_PASSWORD)} className="mb-4">
+                      <Text textAlign="right">¿Olvidaste tu contraseña?</Text>
+                    </Pressable>
+                    <Button onPress={() => handleSubmit()} stretch loading={loading} submit>
+                      Iniciar sesión
+                    </Button>
+                  </View>
+                );
+              }}
+            </Formik>
           </View>
-          <Button onPress={handleLogin} stretch loading={loading}>
-            Iniciar sesión{' '}
-          </Button>
           {/* <View className="flex-1 justify-center items-center mt-6">
             <HStack className="items-center gap-2">
               <Divider style={{ flex: 1 }} />

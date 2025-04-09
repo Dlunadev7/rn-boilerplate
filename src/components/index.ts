@@ -3,3 +3,7 @@ export * from './text/text.component';
 export * from './keyboard/keyboard.component';
 export * from './ui/box/index';
 export * from './button/button.component';
+export * from './actionsheet/actionsheet.component';
+export * from './phone-number/phone-number.component';
+export * from './calendar/calendar.component';
+export * from './map/map.component';

@@ -32,6 +32,14 @@ export default function _layout() {
           name={AuthRoutes.PASSWORD_SUCCESS}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name={AuthRoutes.ADDITIONAL_INFO}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name={AuthRoutes.MAP}
+          options={{ headerShown: false }}
+        />
       </Stack>
     </>
   );

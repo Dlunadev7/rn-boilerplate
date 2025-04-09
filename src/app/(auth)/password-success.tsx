@@ -12,7 +12,7 @@ export default function PasswordSuccess() {
       <Stars />
       <View className="gap-2 items-center mb-8">
         <Text fontSize={32} fontWeight={600} textAlign="center">
-          ¡Contraseña cambiada con éxito!
+          ¡Contraseña reestablecida con éxito!
         </Text>
         <Text fontWeight={400}>
           Tu contraseña se ha actualizado correctamente.

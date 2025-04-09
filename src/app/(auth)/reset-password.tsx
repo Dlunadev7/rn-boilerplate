@@ -1,14 +1,14 @@
-import { Pressable, StyleSheet, View } from "react-native";
-import React, { useState } from "react";
-import { insets } from "@/src/hooks";
-import { Button, Input, KeyboardContainer, Text } from "@/src/components";
-import { router } from "expo-router";
-import { AuthRoutesLink } from "@/src/utils/enum";
-import { Colors } from "@/src/constants/Colors";
-import { messages } from "@/src/utils/password-validate.message";
-import { ArrowLeft, Check, Cross } from "@/assets/svg";
-import { HStack } from "@/src/components/ui/hstack";
-import { VStack } from "@/src/components/ui/vstack";
+import { Pressable, StyleSheet, View } from 'react-native';
+import React, { useState } from 'react';
+import { insets } from '@/src/hooks';
+import { Button, Input, KeyboardContainer, Text } from '@/src/components';
+import { router } from 'expo-router';
+import { AuthRoutesLink } from '@/src/utils/enum';
+import { Colors } from '@/src/constants/Colors';
+import { messages } from '@/src/utils/password-validate.message';
+import { ArrowLeft, Check, Cross } from '@/assets/svg';
+import { HStack } from '@/src/components/ui/hstack';
+import { VStack } from '@/src/components/ui/vstack';
 
 const validatePassword = (password: string) => {
   return {
@@ -23,8 +23,8 @@ const validatePassword = (password: string) => {
 export default function SignUp() {
   const { top, bottom } = insets();
 
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const validations = validatePassword(password);
   const isPasswordEqual = password === confirmPassword;
 
@@ -40,9 +40,7 @@ export default function SignUp() {
             <Text textAlign="center" fontSize={32}>
               Restablecer contraseña
             </Text>
-            <Text textAlign="center">
-              Asegúrate de elegir una contraseña segura y fácil de recordar.
-            </Text>
+            <Text textAlign="center">Asegúrate de elegir una contraseña segura y fácil de recordar.</Text>
           </VStack>
 
           <View className="mt-8 gap-4 pb-8">
@@ -108,10 +106,7 @@ export default function SignUp() {
                   Reestablecer Contraseña
                 </Button>
               </HStack>
-              <Pressable
-                className="items-center justify-end"
-                onPress={() => router.push(AuthRoutesLink.SIGN_IN)}
-              >
+              <Pressable className="items-center justify-end" onPress={() => router.push(AuthRoutesLink.SIGN_IN)}>
                 <Text fontWeight={400}>
                   Ya tenes cuenta? <Text fontWeight={600}>Inicia Sesión</Text>
                 </Text>

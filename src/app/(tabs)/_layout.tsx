@@ -1,3 +1,4 @@
+import { TabsRoutes } from "@/src/utils/enum";
 import { Tabs } from "expo-router";
 import React from "react";
 import { Platform } from "react-native";
@@ -16,7 +17,7 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name={TabsRoutes.HOME}
         options={{
           title: "Home",
         }}
