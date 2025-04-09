@@ -5,6 +5,8 @@ import Stars from './stars.svg';
 import Facebook from './facebook.svg';
 import Google from './google.svg';
 import Apple from './apple.svg';
+import Location from './location-filled.svg';
+import Gentleman from './gentleman.svg';
 
 export {
   Check,
@@ -13,5 +15,7 @@ export {
   Stars,
   Facebook,
   Google,
-  Apple
+  Apple,
+  Location,
+  Gentleman
 }
