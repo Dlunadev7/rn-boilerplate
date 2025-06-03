@@ -1,20 +1,20 @@
 {
-  "extends": "expo/tsconfig.base",
-  "compilerOptions": {
-    "strict": true,
-    "paths": {
-      "@/*": ["./*", "./src/*"],
-      "@assets/*": ["./assets/*"],
-      "tailwind.config": [
-        "./tailwind.config.js"
-      ]
-    }
-  },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    ".expo/types/**/*.ts",
-    "expo-env.d.ts",
-    "nativewind-env.d.ts"
-  ]
+    "extends": "expo/tsconfig.base",
+    "compilerOptions": {
+        "strict": true,
+        "allowImportingTsExtensions": true,
+        "typeRoots": ["./node_modules/@types", "./types"],
+        "paths": {
+            "@/*": ["./*"],
+            "tailwind.config": ["./tailwind.config.js"]
+        }
+    },
+    "include": [
+        "**/*.ts",
+        "**/*.tsx",
+        "nativewind-env.d.ts",
+        ".expo/types/**/*.ts",
+        "expo-env.d.ts",
+        "types/**/*.d.ts"
+    ]
 }

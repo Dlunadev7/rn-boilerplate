@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { Text as RNText, TextProps as RNTextProps } from "react-native";
-import { TextProps } from "./text.type";
-import { scaleSize } from "@/src/helpers/scale-size";
-import styles from "./styles";
-import { Colors } from "@/src/constants/Colors";
+import { Text as RNText, TextProps as RNTextProps } from 'react-native';
+import React, { useState } from 'react';
+import { Colors } from '@/src/constants/Colors';
+import { scaleSize } from '@/src/helpers/scale-size';
+import styles from './styles';
+import { TextProps } from './text.type';
 
 export const Text = (props: RNTextProps & TextProps) => {
   const {
@@ -12,7 +12,7 @@ export const Text = (props: RNTextProps & TextProps) => {
     color = Colors.BLACK,
     textAlign,
     fontWeight = 300,
-    transform = "none",
+    transform = 'none',
     style,
     onPress,
     children,
@@ -22,7 +22,7 @@ export const Text = (props: RNTextProps & TextProps) => {
 
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const textDecoration = underline ? "underline" : "none";
+  const textDecoration = underline ? 'underline' : 'none';
 
   let displayedText = children as string;
   if (maxLength && !isExpanded && displayedText.length > maxLength) {
@@ -34,15 +34,15 @@ export const Text = (props: RNTextProps & TextProps) => {
   };
 
   const fontWeightMap: { [key: number]: string } = {
-    100: "Outfit-Thin",
-    200: "Outfit-ExtraLight",
-    300: "Outfit-Light",
-    400: "Outfit-Regular",
-    500: "Outfit-Medium",
-    600: "Outfit-SemiBold",
-    700: "Outfit-Bold",
-    800: "Outfit-ExtraBold",
-    900: "Outfit-Black",
+    100: 'Outfit-Thin',
+    200: 'Outfit-ExtraLight',
+    300: 'Outfit-Light',
+    400: 'Outfit-Regular',
+    500: 'Outfit-Medium',
+    600: 'Outfit-SemiBold',
+    700: 'Outfit-Bold',
+    800: 'Outfit-ExtraBold',
+    900: 'Outfit-Black',
   };
 
   return (
