@@ -129,7 +129,7 @@ git commit -m "merge: combinar rama 'feature/mapa' con 'main'"
 ## ⚙️ Instalación
 
 ```bash
-git clone https://github.com/tu-usuario/tu-repo.git
+git clone https://github.com/Dlunadev7/rn-boilerplate.git
 cd tu-repo
 npm install
 ```
