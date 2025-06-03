@@ -1,50 +1,135 @@
-# Welcome to your Expo app 👋
+# 🚀 Expo React Native Boilerplate
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Este es un **boilerplate base** para proyectos en **React Native usando Expo**. Incluye una configuración inicial sólida para desarrollo profesional con:
 
-## Get started
+- ⚡️ TypeScript  
+- 🎨 Tailwind CSS (via `nativewind`)  
+- 🧼 ESLint y Prettier  
+- 🧪 Husky y Commitlint (para convenciones de commits)  
+- 📦 Modularización inicial (`components`, `helpers`, `constants`)  
+- 💚 Soporte para Gluestack UI (opcional)  
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## 📁 Estructura del proyecto
 
 ```bash
-npm run reset-project
+boilerplate/  
+├── .expo/                     # Configuración de Expo (generada automáticamente)
+├── .husky/                    # Hooks de Git para asegurar buenas prácticas
+├── assets/                    # Imágenes, fuentes, etc.
+├── node_modules/              # Dependencias instaladas
+├── src/  
+│   ├── app/                   # Pantallas principales o navegación
+│   ├── components/            # Componentes reutilizables
+│   ├── constants/             # Constantes globales
+│   └── helpers/               # Funciones utilitarias
+├── .eslintrc.js               # Configuración de ESLint
+├── .gitignore                 # Archivos y carpetas ignoradas por Git
+├── .npmrc                     # Configuración de NPM
+├── .prettierrc / .prettierignore  # Configuración de Prettier
+├── app.json                   # Configuración principal de Expo
+├── babel.config.js            # Configuración de Babel
+├── commitlint.config.js       # Reglas para commits válidos
+├── expo-env.d.ts              # Tipado global para Expo
+├── gluestack-ui.config.json   # Configuración de Gluestack UI (opcional)
+├── metro.config.js            # Configuración de Metro bundler
+├── nativewind-env.d.ts        # Tipado de Nativewind
+├── package.json               # Dependencias y scripts
+├── tailwind.config.js         # Configuración de Tailwind para Nativewind
+├── tsconfig.json              # Configuración de TypeScript
+└── README.md                  # Este archivo 😄
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+## 🧪 Commits convencionales con Commitlint
 
-To learn more about developing your project with Expo, look at the following resources:
+Este proyecto sigue las reglas de [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/), validadas automáticamente con `commitlint` y `husky`.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### ✍️ Tipos de commits soportados
 
-## Join the community
+| Tipo        | Descripción                                                                 |
+|-------------|-----------------------------------------------------------------------------|
+| `feat`      | Nueva funcionalidad                                                         |
+| `fix`       | Corrección de errores                                                       |
+| `docs`      | Cambios en la documentación                                                 |
+| `style`     | Cambios que no afectan la lógica (formato, espacios, punto y coma, etc.)   |
+| `refactor`  | Cambios en el código que no agregan funcionalidades ni corrigen errores     |
+| `perf`      | Mejoras de rendimiento                                                      |
+| `test`      | Añadir o modificar pruebas                                                  |
+| `build`     | Cambios relacionados con la compilación o dependencias externas             |
+| `ci`        | Cambios en archivos de configuración de CI (GitHub Actions, CircleCI, etc.) |
+| `chore`     | Tareas menores, mantenimiento o configuración general                       |
+| `revert`    | Reversión de un commit anterior                                             |
+| `init`      | Inicialización del proyecto o estructura base                               |
+| `wip`       | Trabajo en progreso, no finalizado                                          |
+| `temp`      | Cambio temporal que será reemplazado                                        |
+| `merge`     | Commits de combinación de ramas                                             |
 
-Join our community of developers creating universal apps.
+### ✅ Ejemplos válidos
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```bash
+# Funcionalidad
+git commit -m "feat: agregar pantalla de registro"
+git commit -m "feat: permitir selección de idioma"
+
+# Corrección de bugs
+git commit -m "fix: evitar crash al iniciar sesión sin conexión"
+git commit -m "fix: resolver problema con animación en iOS"
+
+# Documentación
+git commit -m "docs: añadir ejemplos en el README"
+git commit -m "docs: corregir error ortográfico en CONTRIBUTING.md"
+
+# Estilos (sin afectar lógica del código)
+git commit -m "style: reordenar imports"
+git commit -m "style: aplicar formato con Prettier"
+
+# Refactorización
+git commit -m "refactor: simplificar lógica de validación"
+git commit -m "refactor: separar componente Header en archivos"
+
+# Rendimiento
+git commit -m "perf: reducir renderizaciones innecesarias"
+git commit -m "perf: optimizar carga de imágenes"
+
+# Tests
+git commit -m "test: añadir pruebas para useAuth"
+git commit -m "test: mockear respuestas de la API"
+
+# Build / Dependencias
+git commit -m "build: actualizar versión de expo"
+git commit -m "build: remover dependencia no usada"
+
+# CI/CD
+git commit -m "ci: agregar workflow para deploy automático"
+git commit -m "ci: actualizar versión de Node en GitHub Actions"
+
+# Chores / mantenimiento
+git commit -m "chore: limpiar carpetas temporales"
+git commit -m "chore: mover funciones comunes a helpers"
+
+# Revertir cambios
+git commit -m "revert: revertir cambio en useTheme"
+
+# Inicialización
+git commit -m "init: estructura base del proyecto"
+
+# WIP / temporal
+git commit -m "wip: implementación inicial del mapa"
+git commit -m "temp: solución temporal al scroll en Android"
+
+# Merge
+git commit -m "merge: combinar rama 'feature/mapa' con 'main'"
+```
+
+---
+
+## ⚙️ Instalación
+
+```bash
+git clone https://github.com/tu-usuario/tu-repo.git
+cd tu-repo
+npm install
+```
